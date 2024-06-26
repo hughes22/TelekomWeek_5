@@ -13,7 +13,8 @@ public class Iframe extends FileDownload {
     private final SelenideElement Frame = $(By.cssSelector("iframe[id=\"frame2\"]"));
     private final SelenideElement modal_alert = $(By.xpath("/html/body/div[4]/div[2]/div[3]/button[2]"));
     private final SelenideElement subscribe = $(By.xpath("//span[text()='Subscribe']"));
-
+    private final SelenideElement newsLetter = $(By.xpath("//a[@class='AnchorLink NavBar__List--link']"));
+//a[@class='AnchorLink NavBar__List--link']
 
     public void click_iframe_button() {
 
@@ -25,9 +26,10 @@ public class Iframe extends FileDownload {
         System.out.println(title());
     }
 
-    public void clickModal() {
-        $(modal_alert).shouldBe(visible, Duration.ofSeconds(10)).click();
-    }
+    /*public void clickModal() {
+        $(modal_alert).shouldBe(visible, Duration.ofSeconds(15)).click();
+        $("button[aria-label=\"Menu\"]").shouldBe(visible, Duration.ofSeconds(10)).click();
+    }*/
 
     public void clickSubscribe() {
         $(subscribe).click();

@@ -20,8 +20,8 @@ public class IframeTest {
         Iframe frame = page(Iframe.class);
         frame.click_iframe_button();
         frame.select_iframe();
-        frame.clickModal();
         frame.clickSubscribe();
+
     }
 
 }
