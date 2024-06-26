@@ -1,0 +1,40 @@
+stages:
+    - build
+    - test
+
+variables:
+    MAVEN_OPTS: "-Maven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
+before_script:
+    - opt-get update && apt-get install -y maven
+    # Install necessary dependencies for Selenium
+    - apt-get install -y openjdk-17-jdk
+    - apt-get install -y xvfb
+    - mkdir -p ~/.m2/repository
+
+cache:
+  key: ${CI_JOB_NAME}
+  paths:
+    - .m2/repository
+
+    # Define Jobs
+build-Job:
+  stage: build
+  script:
+    - echo "Building the project..."
+    - mvn clean compile
+
+  artifacts:
+    paths:
+      - target/*.jar
+
+test-Job:
+  stage: test
+  script:
+    - echo "Testing the project..."
+    - mvn test
+    - mvn verify
+    - allure serve
+
+
+
